@@ -1,0 +1,13 @@
+[user]
+  name = Deon Pearson
+  email = me@deonpearson.com
+[core]
+  editor = vi
+  excludesfile = ~/.gitignore
+  autocrlf = input
+[web]
+  browser = google-chrome
+[sequence]
+  editor = rebase-editor
+[push]
+  default = upstream
