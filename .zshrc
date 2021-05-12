@@ -37,7 +37,7 @@ source $CONFIG_IT_UP/private_environment_variables.sh
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell" default
 # ZSH_THEME="tjkirch"
-ZSH_THEME="my"
+ZSH_THEME="current"
 
 # Highlighting to use for zsh autocomplete
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=24'

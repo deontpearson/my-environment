@@ -11,3 +11,5 @@
   editor = rebase-editor
 [push]
   default = upstream
+[pull]
+	rebase = true
