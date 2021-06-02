@@ -12,22 +12,19 @@ export CONFIG_IT_UP="$HOME/workspace/config-it-up"
 # Search in homebrew location first
 export PATH="/usr/local/bin:$PATH"
 
-# My custom scripts
-export PATH="$CONFIG_IT_UP/zsh.d/bin:$PATH"
+# My custom binaries
+export PATH="$HOME/workspace/zsh.d/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 # Path to custom scripts
-export CUSTOM_SCRIPTS="$CONFIG_IT_UP/zsh.d/scripts"
-
-# dev context for kubectl, default is local (docker-desktop)
-export DEVCONTEXT='docker-desktop'
+export CUSTOM_SCRIPTS="$HOME/workspace/zsh.d/scripts"
 
 # prevent pip installs  outside of vitual env
 export PIP_REQUIRE_VIRTUALENV=true
 
-source $CONFIG_IT_UP/private_environment_variables.sh
+# source $HOME/workspace/zshprivate_environment_variables.sh
 # set kubectl current ccontext to be docker-desktop by default
 # kubectl config use-context docker-desktop >/dev/null
 
@@ -99,7 +96,7 @@ DEFAULT_USER=$USER
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM="${CONFIG_IT_UP}/zsh.d/custom"
+# ZSH_CUSTOM="${HOME}/zsh.d/custom"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -115,8 +112,14 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# Source custome ZSH files
-for config_file in $CONFIG_IT_UP/zsh.d/custom/*.zsh; do
+# Source custom ZSH files
+for config_file in $HOME/workspace/zsh.d/custom/*.zsh; do
+  source $config_file
+done
+unset config_file
+
+# Source private ZSH files
+for config_file in $HOME/workspace/zsh.d/private/*; do
   source $config_file
 done
 unset config_file
@@ -158,6 +161,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export PYENV_DEFAULT_PYTHON="3.9.1"
+eval "$(pyenv init --path)"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
