@@ -153,8 +153,8 @@ fi
 # Play nicely with `[]`
 unsetopt nomatch
 
-# enable auto complete on kubectl
-source <(kubectl completion zsh)
+# # enable auto complete on kubectl
+# source <(kubectl completion zsh)
 
 # Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -164,9 +164,11 @@ export PYENV_DEFAULT_PYTHON="3.9.1"
 eval "$(pyenv init --path)"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
 fi
-eval "$(pyenv virtualenv-init -)"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/deon.pearson/.sdkman"
-[[ -s "/Users/deon.pearson/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/deon.pearson/.sdkman/bin/sdkman-init.sh"
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# export SDKMAN_DIR="/Users/deon.pearson/.sdkman"
+# [[ -s "/Users/deon.pearson/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/deon.pearson/.sdkman/bin/sdkman-init.sh"
