@@ -155,7 +155,7 @@ fi
 unsetopt nomatch
 
 # # enable auto complete on kubectl
-# source <(kubectl completion zsh)
+source <(kubectl completion zsh)
 
 # Pyenv
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
