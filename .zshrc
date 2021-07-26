@@ -120,7 +120,7 @@ done
 unset config_file
 
 # Source private ZSH files
-for config_file in $HOME/workspace/zsh.d/private/*; do
+for config_file in $HOME/workspace/zsh.d/private/*.zsh; do
   source $config_file
 done
 unset config_file
