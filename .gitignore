@@ -1,3 +1,19 @@
+# VSCode IDE's
+.vscode
 *.DS_Store
+
+# pyenv
+.python-version
+
+# Environments
+.env
+
+# Other
 Thumbs.db
 .bundle
+tmp/
+
+# pre-commit hooks
+.pre-commit-config.yaml
+pre-commit.sh
+
