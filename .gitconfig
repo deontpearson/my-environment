@@ -1,6 +1,6 @@
 [user]
   name = Deon Pearson
-  email = me@deonpearson.com
+  email = deon@capenetworks.com
 [core]
   editor = vi
   excludesfile = ~/.gitignore
