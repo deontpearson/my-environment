@@ -12,8 +12,15 @@ export CONFIG_IT_UP="$HOME/workspace/config-it-up"
 # Search in homebrew location first
 export PATH="/usr/local/bin:$PATH"
 
+# Homebrew sbin in path
+export PATH="/usr/local/sbin:$PATH"
+
 # My custom binaries
 export PATH="$HOME/workspace/zsh.d/bin:$PATH"
+
+# Kubernetes Utils
+export PATH="${PATH}:${HOME}/workspace/kubectl-plugins"
+export PATH="${PATH}:${HOME}/.krew/bin"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
