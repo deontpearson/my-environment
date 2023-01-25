@@ -52,6 +52,9 @@ TERM="xterm-256color"
 # Not sure what this does
 DEFAULT_USER=$USER
 
+# A temporary hack for VSCode bug
+HISTFILE="$HOME/.zsh_history"
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
