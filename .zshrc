@@ -6,9 +6,6 @@ unset DEVCONTEXT
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# My own tools
-export CONFIG_IT_UP="$HOME/workspace/config-it-up"
-
 # Search in homebrew location first
 export PATH="/usr/local/bin:$PATH"
 
@@ -25,9 +22,6 @@ export PATH="${PATH}:${HOME}/.krew/bin"
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Path to custom scripts
-export CUSTOM_SCRIPTS="$HOME/workspace/zsh.d/scripts"
-
 # prevent pip installs  outside of vitual env
 export PIP_REQUIRE_VIRTUALENV=true
 
@@ -39,8 +33,6 @@ export PIP_REQUIRE_VIRTUALENV=true
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell" default
-# ZSH_THEME="tjkirch"
 ZSH_THEME="current"
 
 # Highlighting to use for zsh autocomplete
