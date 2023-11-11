@@ -6,6 +6,9 @@ unset DEVCONTEXT
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# PyCharm CLI integration
+export PATH="/Applications/PyCharm CE.app/Contents/MacOS:$PATH"
+
 # Search in homebrew location first
 export PATH="/usr/local/bin:$PATH"
 
@@ -24,6 +27,10 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # prevent pip installs  outside of vitual env
 export PIP_REQUIRE_VIRTUALENV=true
+
+# start tmux by default
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOCONNECT=false
 
 # source $HOME/workspace/zshprivate_environment_variables.sh
 # set kubectl current ccontext to be docker-desktop by default
@@ -46,6 +53,9 @@ DEFAULT_USER=$USER
 
 # A temporary hack for VSCode bug
 HISTFILE="$HOME/.zsh_history"
+
+# FOr NVM stuff
+export NVM_DIR="$HOME/.nvm"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -105,12 +115,13 @@ HISTFILE="$HOME/.zsh_history"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-prompt_context() {}
+# prompt_context() {}
 plugins=(
-  git
   docker
-  zsh-autosuggestions
+  git
   pyenv
+  tmux
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -156,7 +167,7 @@ fi
 # Play nicely with `[]`
 unsetopt nomatch
 
-# # enable auto complete on kubectl
+# enable auto complete on kubectl
 source <(kubectl completion zsh)
 
 # Pyenv
