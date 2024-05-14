@@ -28,10 +28,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # prevent pip installs  outside of vitual env
 export PIP_REQUIRE_VIRTUALENV=true
 
-# start tmux by default
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOCONNECT=false
-
 # source $HOME/workspace/zshprivate_environment_variables.sh
 # set kubectl current ccontext to be docker-desktop by default
 # kubectl config use-context docker-desktop >/dev/null
@@ -54,7 +50,7 @@ DEFAULT_USER=$USER
 # A temporary hack for VSCode bug
 HISTFILE="$HOME/.zsh_history"
 
-# FOr NVM stuff
+# For NVM stuff
 export NVM_DIR="$HOME/.nvm"
 
 # Set list of themes to pick from when loading at random
@@ -110,6 +106,13 @@ export NVM_DIR="$HOME/.nvm"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM="${HOME}/zsh.d/custom"
 
+# Android Studio
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+export ANDROID_HOME=$HOME/Library/Android/sdk/
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/tools
+
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -120,7 +123,6 @@ plugins=(
   docker
   git
   pyenv
-  tmux
   zsh-autosuggestions
 )
 
@@ -207,6 +209,33 @@ load-nvmrc
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# Ruby Env
+eval "$(rbenv init - zsh)"
+
 # #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 # export SDKMAN_DIR="/Users/deon.pearson/.sdkman"
 # [[ -s "/Users/deon.pearson/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/deon.pearson/.sdkman/bin/sdkman-init.sh"
+git() {
+if [ "$1" = "add" -o "$1" = "stage" ]; then
+    if [ "$2" = "." ] ; then
+        printf "git %s . is currently disabled by your Git wrapper.
+" "$1";
+    else
+        command git "$@";
+    fi;
+else
+    command git "$@";
+fi;
+}
+git() {
+if [ "$1" = "add" -o "$1" = "stage" ]; then
+    if [ "$2" = "." ] ; then
+        printf "git %s . is currently disabled by your Git wrapper.
+" "$1";
+    else
+        command git "$@";
+    fi;
+else
+    command git "$@";
+fi;
+}
