@@ -39,7 +39,7 @@ export PIP_REQUIRE_VIRTUALENV=true
 ZSH_THEME="current"
 
 # Highlighting to use for zsh autocomplete
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=24'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#9a9b9c'
 
 # Set xterm to use 256 colours
 TERM="xterm-256color"
