@@ -48,7 +48,7 @@ TERM="xterm-256color"
 DEFAULT_USER=$USER
 
 # A temporary hack for VSCode bug
-HISTFILE="$HOME/.zsh_history"
+# HISTFILE="$HOME/.zsh_history"
 
 # For NVM stuff
 export NVM_DIR="$HOME/.nvm"
