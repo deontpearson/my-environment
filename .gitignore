@@ -21,3 +21,6 @@ pre-commit.sh
 # pycharm
 .run
 pyrightconfig.json
+
+# terraform 
+.terraform.lock.hcl
