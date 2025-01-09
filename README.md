@@ -1,2 +1,3 @@
-# dotfiles
-A collection of dotfiles for my development machine
+# My Environment
+
+A collection of dotfiles, scripts, aliases, and functions I use on my work / development machine
