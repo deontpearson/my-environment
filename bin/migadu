@@ -1,0 +1,120 @@
+#!/Users/deon/.pyenv/versions/python3/bin/python
+
+import argparse
+import json
+import os
+import random
+from typing import Any, Dict
+
+import requests
+from requests import Response
+from requests.auth import HTTPBasicAuth
+
+TOKEN = os.getenv("MIGADU_TOKEN")
+USER = os.getenv("MIGADU_EMAIL")
+API = "https://api.migadu.com/v1"
+
+HEADERS = {"Content-Type": "application/json"}
+
+parser = argparse.ArgumentParser(description="Interacts with Migadu API")
+
+parser.add_argument(
+    "resource",
+    type=str,
+    choices=["aliases", "identities"],
+    help="the resource to work on",
+)
+parser.add_argument(
+    "-c", "--create", default=False, action="store_true", help="create the resource"
+)
+parser.add_argument(
+    "-d", "--delete", default=False, action="store_true", help="delete the resource"
+)
+parser.add_argument(
+    "-s", "--show", default=False, action="store_true", help="show the resource"
+)
+parser.add_argument("--domain", type=str, help="the domain to work on")
+parser.add_argument(
+    "--recipients", type=str, help="comma separated list of recipients, e.g (foo,bar)"
+)
+
+args = parser.parse_args()
+
+
+def _post(url: str, data: Dict[str, Any]) -> Response:
+    return requests.post(url=url, auth=HTTPBasicAuth(USER, TOKEN), data=data)
+
+
+def _delete(url: str) -> Response:
+    response = requests.post(url=url, auth=HTTPBasicAuth(USER, TOKEN))
+    if response.status_code == 200:
+        print("Done")
+    else:
+        print(json.dumps(response.json(), indent=True))
+
+
+def _get(url: str) -> Response:
+    return requests.post(url=url, auth=HTTPBasicAuth(USER, TOKEN))
+
+
+def aliases(domain: str, recipients: str, args: Any):
+    if args.create:
+        alias = input("Enter the alias to create> ").lower()
+
+        response = _post(
+            url=f"{API}/domains/{domain}/aliases",
+            data={
+                "local_part": alias,
+                "destinations": ",".join(
+                    [
+                        f"{recipient.strip()}@{domain}"
+                        for recipient in recipients.split(",") or "deon"
+                    ]
+                ),
+            },
+        )
+        print(json.dumps(response.json(), indent=True))
+    elif args.delete:
+        while True:
+            alias = input("Enter the alias to delete> ").lower()
+            if not alias:
+                break
+            _delete(f"{API}/domains/{domain}/aliases/{alias}")
+    elif args.show:
+        print(json.dumps(_get(f"{API}/domains/{domain}/aliases").json(), indent=True))
+
+
+def identities(domain: str, args: Any):
+    mailbox = "deon"
+    if args.create:
+        identity = input("Enter the identity to create> ").lower()
+        response = _post(
+            f"{API}/domains/{domain}/mailboxes/{mailbox}/identities",
+            data={
+                "name": identity.capitalize(),
+                "local_part": identity,
+                "password": "%032x" % random.getrandbits(128),
+            },
+        )
+
+        print(json.dumps(response.json(), indent=True))
+    elif args.delete:
+        while True:
+            identity = input("Enter the identity to delete> ").lower()
+            if not identity:
+                break
+            _delete(f"{API}/domains/{domain}/mailboxes/{mailbox}/identities/{identity}")
+    elif args.show:
+        print(
+            json.dumps(
+                _get(f"{API}/domains/{domain}/mailboxes/{mailbox}/identities").json(),
+                indent=True,
+            )
+        )
+
+
+args = parser.parse_args()
+if args.resource == "aliases":
+    aliases(domain=args.domain, recipients=args.recipients, args=args)
+if args.resource == "identities":
+    identities(domain=args.domain, args=args)
