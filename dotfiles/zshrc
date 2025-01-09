@@ -1,2 +1,12 @@
 # zsh-autosuggestions
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# my custom aliases and functions
+for file in $HOME/workspace/my-environment/custom/*.zsh; do
+  [ -r "$file" ] && source "$file"
+done
+
+# my private custom aliases and functions
+for file in $HOME/workspace/my-environment/private/*.zsh; do
+  [ -r "$file" ] && source "$file"
+done

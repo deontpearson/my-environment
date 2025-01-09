@@ -1,0 +1,5 @@
+alias watch='watch '
+# alias tm='tmuxinator '
+alias ks='kubeseal'
+alias kc='kubectl'
+alias jiramaker='python ~/workspace/uxi-tools/jiramaker'
