@@ -1,0 +1,100 @@
+# Unset variables at start of session
+unset ENV_NAME
+unset BRANCH
+unset DEVCONTEXT
+
+# Search in homebrew location first
+export PATH="/usr/local/bin:$PATH"
+
+# Kubernetes Utils
+export PATH="${PATH}:${HOME}/workspace/kubectl-plugins"
+export PATH="${PATH}:${HOME}/.krew/bin"
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# prevent pip installs  outside of vitual env
+export PIP_REQUIRE_VIRTUALENV=true
+
+# Highlighting to use for zsh autocomplete
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#9a9b9c'
+
+# Set xterm to use 256 colours
+TERM="xterm-256color"
+
+# Not sure what this does
+DEFAULT_USER=$USER
+
+# For NVM stuff
+export NVM_DIR="$HOME/.nvm"
+
+# Play nicely with `[]`
+unsetopt nomatch
+
+# Pyenv
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+# export PYENV_DEFAULT_PYTHON="3.9.1"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"                                       # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+
+# place this after nvm initialization!
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# Ruby Env
+eval "$(rbenv init - zsh)"
+
+# #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# export SDKMAN_DIR="/Users/deon.pearson/.sdkman"
+# [[ -s "/Users/deon.pearson/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/deon.pearson/.sdkman/bin/sdkman-init.sh"
+git() {
+if [ "$1" = "add" -o "$1" = "stage" ]; then
+    if [ "$2" = "." ] ; then
+        printf "git %s . is currently disabled by your Git wrapper.
+" "$1";
+    else
+        command git "$@";
+    fi;
+else
+    command git "$@";
+fi;
+}
+git() {
+if [ "$1" = "add" -o "$1" = "stage" ]; then
+    if [ "$2" = "." ] ; then
+        printf "git %s . is currently disabled by your Git wrapper.
+" "$1";
+    else
+        command git "$@";
+    fi;
+else
+    command git "$@";
+fi;
+}
