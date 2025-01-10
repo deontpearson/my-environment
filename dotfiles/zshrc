@@ -123,3 +123,7 @@ done
 
 # enable auto complete on kubectl
 source <(kubectl completion zsh)
+
+# pyenv
+# brew install pyenv
+eval "$(pyenv init - zsh)"

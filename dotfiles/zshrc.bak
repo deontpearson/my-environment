@@ -10,12 +10,6 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="${PATH}:${HOME}/workspace/kubectl-plugins"
 export PATH="${PATH}:${HOME}/.krew/bin"
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-# prevent pip installs  outside of vitual env
-export PIP_REQUIRE_VIRTUALENV=true
-
 # Highlighting to use for zsh autocomplete
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#9a9b9c'
 
