@@ -44,34 +44,3 @@ add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# Ruby Env
-eval "$(rbenv init - zsh)"
-
-# #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-# export SDKMAN_DIR="/Users/deon.pearson/.sdkman"
-# [[ -s "/Users/deon.pearson/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/deon.pearson/.sdkman/bin/sdkman-init.sh"
-git() {
-if [ "$1" = "add" -o "$1" = "stage" ]; then
-    if [ "$2" = "." ] ; then
-        printf "git %s . is currently disabled by your Git wrapper.
-" "$1";
-    else
-        command git "$@";
-    fi;
-else
-    command git "$@";
-fi;
-}
-git() {
-if [ "$1" = "add" -o "$1" = "stage" ]; then
-    if [ "$2" = "." ] ; then
-        printf "git %s . is currently disabled by your Git wrapper.
-" "$1";
-    else
-        command git "$@";
-    fi;
-else
-    command git "$@";
-fi;
-}
