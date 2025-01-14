@@ -3,18 +3,9 @@ unset ENV_NAME
 unset BRANCH
 unset DEVCONTEXT
 
-# Search in homebrew location first
-export PATH="/usr/local/bin:$PATH"
-
 # Kubernetes Utils
 export PATH="${PATH}:${HOME}/workspace/kubectl-plugins"
 export PATH="${PATH}:${HOME}/.krew/bin"
-
-# Highlighting to use for zsh autocomplete
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#9a9b9c'
-
-# Set xterm to use 256 colours
-TERM="xterm-256color"
 
 # Not sure what this does
 DEFAULT_USER=$USER
@@ -24,14 +15,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Play nicely with `[]`
 unsetopt nomatch
-
-# Pyenv
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-# export PYENV_DEFAULT_PYTHON="3.9.1"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-fi
 
 # NVM
 export NVM_DIR="$HOME/.nvm"

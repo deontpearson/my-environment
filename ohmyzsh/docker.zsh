@@ -6,3 +6,8 @@ function docker-clean() {
   echo 'WARNING!\tRemoving images (docker rmi)'
   docker rmi $(docker images | grep none | awk '{print $3}') -f
 }
+
+function dockerm() {
+  eval $(minikube docker-env)
+  docker $@
+}
