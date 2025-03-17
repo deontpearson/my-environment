@@ -2,13 +2,13 @@
   name = Deon Pearson
   email = 46675621+deontpearson@users.noreply.github.com
 [core]
-  editor = vi
+  editor = vim
   excludesfile = ~/.gitignore
   autocrlf = input
 [web]
   browser = google-chrome
 [sequence]
-  editor = rebase-editor
+  editor = vim
 [push]
   default = upstream
 [pager]

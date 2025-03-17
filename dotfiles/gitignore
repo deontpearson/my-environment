@@ -13,6 +13,7 @@ Thumbs.db
 .bundle
 tmp/
 diff.html
+docker-run.sh
 
 # pre-commit hooks
 .pre-commit-config.yaml
@@ -24,3 +25,6 @@ pyrightconfig.json
 
 # terraform 
 .terraform.lock.hcl
+
+# notebooks
+notebooks
